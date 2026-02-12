@@ -12,15 +12,23 @@
     }
 
     body {
-      font-family: 'Georgia', 'Palatino', serif;
-      background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 50%, #ffd4e8 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
+  font-family: 'Georgia', 'Palatino', serif;
+
+  /* Initial background: SVG + gradient fallback */
+  background:
+    url('background-start.svg') no-repeat center center,
+    linear-gradient(135deg, #fff0f5 0%, #ffe4f0 50%, #ffd4e8 100%);
+  
+  background-size: cover; /* Make SVG cover the full viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+
+  transition: background 0.5s ease-in-out; /* Smooth swap later */
+}
 
     .container {
       max-width: 550px;
@@ -240,7 +248,12 @@
   yesBtn.addEventListener("click", () => {
     // Celebratory GIF
     gifContainer.innerHTML = '<div class="tenor-gif-embed" data-postid="7666949294385418314" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/hugging-heart-snoopy-peanants-embracing-heart-i-love-you-gif-7666949294385418314">Hugging Heart Snoopy Sticker</a>from <a href="https://tenor.com/search/hugging+heart-stickers">Hugging Heart Stickers</a></div>';
-    
+    // Swap the background to the "Yes" SVG
+document.body.style.background = `
+  url('background-yes.svg') no-repeat center center,
+  linear-gradient(135deg, #fff0f5 0%, #ffe4f0 50%, #ffd4e8 100%)
+`;
+document.body.style.backgroundSize = "cover";
     // Reload Tenor embeds
     reloadTenorEmbeds();
     
